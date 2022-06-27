@@ -1,0 +1,51 @@
+CREATE DATABASE db_curso;
+
+CREATE TABLE tb_alunos(
+  id_aluno int(5) auto_increment primary key,
+  nome varchar(60) not null,
+  email varchar(60) not null,
+  senha varchar(60) not null
+  );
+  
+  
+  /////
+  
+  
+  INSERT INTO tb_alunos(nome, email, senha) VALUES 
+  ('Geovanna Martins', 'geovannaM@gmail.com', 'geovanna123'),
+  ('Ricardo Santos', 'ricardoS@gmail.com', 'ricardo123'),
+  ('Isabella Silva', 'isabellasilva@gmail.com', 'isabella123'),
+  ('Lucas Ribeiro', 'lucasr@gmail.com', 'lucas123'),
+  ('Felipe Barros', 'felipebarros@gmail.com', 'felipe123');
+  
+  
+  /////
+  
+ <?php
+//arquivo de conexão com o banco
+$host = "localhost";
+$user = "root";
+$pass = "";
+$name = "curso";
+$link = mysqli_connect($host, $user, $pass, $name);
+	
+?>
+
+///
+
+
+<?php
+include "connect.php";
+echo "<h1>Dados dos Alunos</h1>";
+
+//exibir dados do banco
+$sql = mysqli_query($link,"select * from tb_alunos");
+while($dados = mysqli_fetch_array($sql)){
+	echo "$dados[id_aluno]<br>";
+	echo "$dados[nome]<br>";
+	echo "$dados[email]<br>";
+	echo "$dados[senha]<hr>";
+}	
+
+// $dados = [id_aluno,nome,email,senha];
+?>
